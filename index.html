@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contacts</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">FeedReader</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="msg-box"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <form id="addFeed">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-group add-feed-fields">
+                  <input type="text" name="add-source-name" id="add-source-name" placeholder="Name">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group add-feed-fields">
+                  <input type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- content goes here -->
+      <div class="row">
+        <div class="col-md-4">
+          <ul id="feed-list"></ul>
+        </div>
+        <div class="col-md-8">
+          <div class="rssfeed"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer class="footer">
+
+  </footer>
+  <!-- javascript for speedier loading -->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/md5.js"></script>
+  <script type="text/javascript" src="js/models.js"></script>
+  <script type="text/javascript" src="js/views.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
