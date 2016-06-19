@@ -9,13 +9,17 @@ function App(name) {
 App.prototype.addSources = function(){
   var argLen = arguments.length;
   for(var i=0; i < argLen; i++){
-    this.sources.push(arguments[i]);
-    this.models[(arguments[i].id)] = new Model(arguments[i].id);
-    this.watchers.push(new FeedWatcher({id: arguments[i].id,
-                                        link: arguments[i].link,
-                                        feedInterval: arguments[i].feedInterval
-                                      })
-    );
+    // if there is no model associated with the new source;
+    if(!this.models[arguments[i].id]){
+      this.sources.push(arguments[i]);
+      this.models[(arguments[i].id)] = new Model(arguments[i].id);
+      this.watchers.push(new FeedWatcher({id: arguments[i].id,
+                                          link: arguments[i].link,
+                                          feedInterval: arguments[i].feedInterval
+                                        })
+      );
+      this.models[this.id].save("sources", this.sources);
+    }
   }
 };
 
@@ -31,8 +35,14 @@ if(storedSources){
     Reader.addSources(source);
   });
 }
-//Reader.models.push(Reader.id);
 
+// Pre-render the feed lists if they exist
+// Thank you localStorage for persistence :D
+//Reader.models.push(Reader.id);
+$('#feed-list').empty();
+Reader.sources.forEach(function(source){
+  $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
+});
 /**
  *   @newSource  - Source object
  */
@@ -50,12 +60,15 @@ $(function(){
     Reader.addSources(newSource);
       console.log(Reader);
     $('#msg-box').html("<p>Item added!</p>");
-    $('#feed-list').append('<li class="feed-list-item" id="li-' + newSource.id + '">' + name + '</li>');
+    $('#feed-list').empty();
+    Reader.sources.forEach(function(source){
+      $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
+    });
   });
 
   $('#feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
-    var sources = Reader.models[item[1]].fetch("articles");
+    var sources = Reader.models[item[1]].findAll("articles");
     console.log(sources);
     $('.rssfeed').text("");
     sources.forEach(function(article){

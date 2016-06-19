@@ -106,7 +106,7 @@ Model.prototype.fetch = function(table){
 }
 
 Model.prototype.save = function(table, data){
-  localStorage.setObject(table.id + "-" + table, data);
+  localStorage.setObject(this.id + "-" + table, data);
 }
 
 Model.prototype.put = function(table, data){
@@ -116,7 +116,7 @@ Model.prototype.put = function(table, data){
 /**
  * returns all records
  * @param  String table Name of the table to pull from
- * @return Object [Array]       returns an array of the result-set
+* @return Object [Array]       returns an array of the result-set
  */
 Model.prototype.findAll = function(table){
   return this.fetch(table);
