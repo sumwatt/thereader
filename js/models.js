@@ -22,9 +22,6 @@ function Source(name, link){
   this.link = link;
   this.id = md5(name);
   this.feedInterval = 60000;
-
-  this.watcher = new FeedWatcher(this);
-  this.model = new Model(this);
 };
 
 /**
@@ -34,7 +31,7 @@ function Source(name, link){
 function FeedWatcher(source){
   setInterval(function timer(){
     $.getJSON('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22' + encodeURIComponent(source.link) + '%22limit%205&format=json&diagnostics=true&callback=', function(data){
-      // console.log(source.feedInterval)
+      console.log(source.feedInterval)
       var results = data.query.results;
       var itemLen = results.item.length;
       var storage = localStorage.getObject(source.id + "-articles");
@@ -97,12 +94,12 @@ function FeedWatcher(source){
  * Model is attached to a source so it is aware of the underlying data
  * @param {[type]} source [description]
  */
-function Model(object){
-  this.table = object;
+function Model(id){
+  this.id = id;
 }
 Model.prototype.fetch = function(table){
-  if(localStorage.getObject(this.table.id + "-" + table)){
-    return localStorage.getObject(this.table.id + "-" + table);
+  if(localStorage.getObject(this.id + "-" + table)){
+    return localStorage.getObject(this.id + "-" + table);
   } else {
     return false
   }
