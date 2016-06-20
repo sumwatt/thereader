@@ -21,7 +21,7 @@ function Source(name, link){
   this.name = name;
   this.link = link;
   this.id = md5(name);
-  this.feedInterval = 60000;
+  this.feedInterval = 3600000;
 };
 
 /**
@@ -30,10 +30,18 @@ function Source(name, link){
  */
 function FeedWatcher(source){
   setInterval(function timer(){
-    $.getJSON('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22' + encodeURIComponent(source.link) + '%22limit%205&format=json&diagnostics=true&callback=', function(data){
-      console.log(source.feedInterval)
-      var results = data.query.results;
-      var itemLen = results.item.length;
+    $.getJSON('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20feednormalizer%20where%20url%3D%22' + encodeURIComponent(source.link) + '%22%20and%20output%3D%22rss_2.0%22%20limit%2010&format=json&diagnostics=true&callback=', function(data){
+      var results;
+      var atomFeed = false;
+      if(data.query.results.item){
+        results = data.query.results;
+      } else if (data.query.results.rss.channel.item) {
+        results = data.query.results.rss.channel;
+        atomFeed = true;
+      }
+      console.log(JSON.stringify(results.item));
+      var itemLen = results.item.length ;
+
       var storage = localStorage.getObject(source.id + "-articles");
       var content = [];
       // most of this code is used to reduce the amount of content stored since local storage is limited
@@ -63,6 +71,8 @@ function FeedWatcher(source){
           // detect an array and change it to the string of the first item
           if(typeof description === "object" ){
             article.description = item.description[0];
+          } else if (!item.description && atomFeed) {
+            article.description = item.encoded;
           } else {
             article.description = item.description;
           }
