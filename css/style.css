@@ -12,7 +12,13 @@
 
 .article-title {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.article-title-inline {
+  font-weight: bold;
+  font-size: 14px;
   margin-bottom: 5px;
 }
 
@@ -20,7 +26,7 @@ img {
   max-width: 100%;
 }
 
-#primaryaudio {
+#primaryaudio, .share-tools--primary, .audio-module, #story-meta{
   display: none;
 }
 
