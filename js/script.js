@@ -81,6 +81,7 @@ $(function(){
           }
           $('.article-content').append(content);
         }
+
       });
     });
 
