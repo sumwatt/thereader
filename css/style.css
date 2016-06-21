@@ -20,3 +20,15 @@
   float: right;
   margin-top: 10px;
   }
+
+img {
+  max-width: 100%;
+}
+
+#primaryaudio {
+  display: none;
+}
+
+.article {
+  border-bottom: 1px dotted;
+}
