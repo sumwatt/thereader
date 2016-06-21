@@ -93,6 +93,7 @@ function FeedWatcher(source){
           }
 
           article.pubDate = item.pubDate;
+          article.link = item.link;
 
           content.push(article);
         }
