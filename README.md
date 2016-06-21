@@ -24,7 +24,7 @@ User can flag articles as read, articles are greyed out or hidden.
 Javascript. Bootstrap. jQuery.
 
 ### Setup and Installation
-CLone Repo and Enjoy :)
+Clone Repo and Enjoy :)
 
 
 ###Known Bugs
