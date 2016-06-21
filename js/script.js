@@ -24,6 +24,12 @@ Reader.sources.forEach(function(source){
 
 var newSource = Object;
 
+function renderAudioPlayer(link){
+  $('#player').text("");
+  $('#player').append('<source src="' + link + '" type="audio/mpeg">')
+}
+
+
 $(function(){
   $("#addFeed").submit(function(event){
     event.preventDefault();
@@ -48,7 +54,7 @@ $(function(){
     $('.rssfeed').text("");
     sources.forEach(function(article){
       var content = '<div class="article" id="article-' + article.id + '">';
-      content += '<div class="article-title"id="title-' + article.id + '">' + article.title + '</div>';
+      content += '<div class="article-title" id="title-' + article.id + '">' + article.title + '</div>';
       content += "</div><!-- closes article -->";
       $('.rssfeed').append(content);
     });
@@ -63,7 +69,14 @@ $(function(){
         if(article.id === articleId[1]){
           // remove all html formatting
           // article.content.replace(/(<([^>]+)>)/ig, "")
-          $('.article-content').append(article.content);
+          var content = '<div class="article-title-inline"><a href="' + article.link + '">'+  article.title + '</a></div>';
+          //content += '<div class="article-link"><p><a href="' + article.link + '">original source</a></p></div>';
+          content += '<div class="article-content-body">' + article.content + '</div>';
+          if(article.podcast){
+            content += '<div class="podcast-link">'+
+                      '<a href="' + article.audioUrl  + '"<span class="glyphicon glyphicon-play-circle">' + '</span></a></div>';
+          }
+          $('.article-content').append(content);
         }
       });
     });
