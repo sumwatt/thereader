@@ -22,6 +22,11 @@
   margin-bottom: 5px;
 }
 
+.player {
+  float: right;
+  margin-top: 10px;
+  }
+
 img {
   max-width: 100%;
 }
