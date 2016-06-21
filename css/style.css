@@ -23,3 +23,7 @@ img {
 #primaryaudio {
   display: none;
 }
+
+.article {
+  border-bottom: 1px dotted;
+}
