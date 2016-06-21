@@ -85,13 +85,33 @@ $(function(){
     });
   });
 
+
+//Create a new category name and store it in a new object. Push the object to reader.categories
   $('#new-category').submit(function (event) {
     event.preventDefault();
     var categoryName = $('#category-name').val();
-    '#feed-list'.show();
+    reader.categories.push(new Category(categoryName, []));
+  });
+
+
+//Create select box with category names
+  Categories.forEach(function(catName){
+    var catSelectBox = '<option>' + Categories.name + '</option>';
+    $('#chooseCategory').append(catSelectBox);
+  });//NEED TO ADD NAME'S VALUE
+
+
+//Choose category from select box, checkbox to select sources to assign to choosen category. Push to selected category's object.
+  $('#add-to-category').submit(function (event) {
+    event.preventDefault();
     var categorySources = [];
     $('#add-to-category input:checked').each(function() {
-        categorySources.push($(this).val());
+      categorySources.push($(this).val());
     });
+    Categories.$('#chooseCategory').val().push(categorySources);//PUSHING TO WRONG PLACE
   });
+
+
+
+
 });
