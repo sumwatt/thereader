@@ -47,6 +47,7 @@ $(function(){
     });
   });
 
+
   $('#feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
     var sources = Reader.models[item[1]].findAll("articles");
@@ -73,13 +74,17 @@ $(function(){
           //content += '<div class="article-link"><p><a href="' + article.link + '">original source</a></p></div>';
           content += '<div class="article-content-body">' + article.content + '</div>';
           if(article.podcast){
-            content += '<div class="podcast-link">'+
-                      '<a href="' + article.audioUrl  + '"<span class="glyphicon glyphicon-play-circle">' + '</span></a></div>';
+            content += '<div class="player">' +
+              '<audio controls id="player">' + '<source src="' + article.audioUrl + '"> type="audio/mpeg">' +
+              '</audio>' +
+              '</div>';
           }
           $('.article-content').append(content);
         }
       });
     });
+
+
 
   });
 
