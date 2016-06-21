@@ -4,6 +4,12 @@ function App(name) {
   this.sources = [];
   this.models = {};
   this.watchers = [];
+  this.categories = [];
+}
+
+function Categories(name, sources) {
+  this.name = name;
+  this.sources = [];
 }
 
 App.prototype.addSources = function(){
@@ -58,7 +64,6 @@ $(function(){
     newSource = new Source(name, link);
     // newSource.fetch();
     Reader.addSources(newSource);
-      console.log(Reader);
     $('#msg-box').html("<p>Item added!</p>");
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
@@ -69,7 +74,6 @@ $(function(){
   $('#feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
     var sources = Reader.models[item[1]].findAll("articles");
-    console.log(sources);
     $('.rssfeed').text("");
     sources.forEach(function(article){
       var content = '<div class="article" id="article' + article.id + '">';
@@ -78,6 +82,16 @@ $(function(){
       content += "</div><!-- closes article -->";
 
       $('.rssfeed').append(content);
+    });
+  });
+
+  $('#new-category').submit(function (event) {
+    event.preventDefault();
+    var categoryName = $('#category-name').val();
+    '#feed-list'.show();
+    var categorySources = [];
+    $('#add-to-category input:checked').each(function() {
+        categorySources.push($(this).val());
     });
   });
 });
