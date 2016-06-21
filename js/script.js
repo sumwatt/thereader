@@ -4,6 +4,7 @@ function App(name) {
   this.sources = [];
   this.models = {};
   this.watchers = [];
+
 }
 
 App.prototype.addSources = function(){

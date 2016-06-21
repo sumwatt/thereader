@@ -39,7 +39,7 @@ function FeedWatcher(source){
         results = data.query.results.rss.channel;
         atomFeed = true;
       }
-      console.log(JSON.stringify(results.item));
+      //console.log(JSON.stringify(results.item));
       var itemLen = results.item.length ;
 
       var storage = localStorage.getObject(source.id + "-articles");
@@ -81,8 +81,22 @@ function FeedWatcher(source){
             article.podcast = true;
             article.audioUrl = item.enclosure.url;
           }
+
+          if(item.encoded){
+            article.content = item.encoded;
+          } else {
+            article.content = article.description;
+          }
+
+          if(item.guid.content){
+            article.link = item.guid.content;
+          }
+
+          article.pubDate = item.pubDate;
+
           content.push(article);
         }
+        console.log(JSON.stringify(article));
         // if we have valid results - store them in the database
         if(storage && content){
           localStorage.setObject(source.id + "-articles", storage.concat(content));
@@ -117,10 +131,6 @@ Model.prototype.fetch = function(table){
 
 Model.prototype.save = function(table, data){
   localStorage.setObject(this.id + "-" + table, data);
-}
-
-Model.prototype.put = function(table, data){
-
 }
 
 /**
