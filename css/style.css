@@ -66,9 +66,18 @@ iframe {
 a {
   color: black;
 }
+
 .glyphicon-remove{
   display: none;
 }
 #feed-list{
   cursor: pointer;
+}
+
+.article-link-bar {
+  float: right;
+}
+
+.podcast-link {
+  /*max-width: 400px;*/
 }
