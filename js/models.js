@@ -82,10 +82,12 @@ function FeedWatcher(source){
             article.audioUrl = item.enclosure.url;
           }
 
-          if(item.encoded){
+          if(typeof item.encoded === "object"){
+            article.content = item.encoded[1];
+          } else if(item.encoded){
             article.content = item.encoded;
           } else {
-            article.content = article.description;
+            article.content = article.description[1];
           }
 
           if(item.guid.content){
@@ -97,7 +99,7 @@ function FeedWatcher(source){
 
           content.push(article);
         }
-        console.log(JSON.stringify(article));
+        // console.log(JSON.stringify(article));
         // if we have valid results - store them in the database
         if(storage && content){
           localStorage.setObject(source.id + "-articles", storage.concat(content));
