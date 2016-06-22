@@ -10,6 +10,8 @@ if(storedSources){
     Reader.addSources(source);
   });
 }
+Reader.categories = Reader.models[Reader.id].fetch("categories") || [];
+
 
 // Pre-render the feed lists if they exist
 // Thank you localStorage for persistence :D
@@ -18,11 +20,15 @@ $('#feed-list').empty();
 Reader.sources.forEach(function(source){
   $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
 });
-/**
- *   @newSource  - Source object
- */
 
-var newSource = Object;
+if(Reader.categories){
+  Reader.categories.forEach(function(category){
+    $('#chooseCategory').append('<option id="catopt-' + category.id + '">' + category.name + '</option>');
+  });
+
+}
+
+
 
 var renderArticle = function(id, article){
   var content = '<div class="article-title-inline"></span> <a href="' + article.link + '">'+  article.title + '</a></div>';
@@ -47,15 +53,19 @@ $(function(){
   //  debugger;
     var name = $('#add-source-name').val();
     var link = $('#add-feed-link').val();
-    newSource = new Source(name, link);
-    // newSource.fetch();
+    var newSource = new Source(name, link);
     Reader.addSources(newSource);
-      console.log(Reader);
     $('#msg-box').html("<p>Item added!</p>");
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
       $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
     });
+    for (var i=0; i<=Reader.categories.length; i++) {
+      if (Reader.categories[i].name === $('#chooseCategory').val() ) {
+        Reader.categories[i].sources.push(newSource);
+      }
+    }
+
   });
 
 
@@ -101,6 +111,15 @@ $(function(){
         $('.rssfeed').append(content);
       });
       renderArticle(id[0], articles[0]);
+    });
+  });
+
+  $('#catNameButton').click(function (event) {
+    event.preventDefault();
+    Reader.addCat(new Categories($('#catName').val(),[]));
+    $('#chooseCategory').text("");
+    Reader.categories.forEach(function(category){
+      $('#chooseCategory').append('<option id="catopt-' + category.id + '">' + category.name + '</option>');
     });
   });
 });

@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Reader</title>
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" href='css/bootstrap.min.css' type="text/css">
+  <link rel="stylesheet" href='css/bootstrap-theme.min.css' type="text/css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -38,25 +37,44 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <form id="addFeed">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group add-feed-fields">
-                  <input type="text" name="add-source-name" id="add-source-name" placeholder="Name">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group add-feed-fields">
-                  <input type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
-                </div>
-              </div>
+        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#modal">Add</button>
+        </div>
+      </div>
+
+      <div id="modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-body">
+
+                  <!--Form that allows selectio of a defined category to add sources-->
+                <form id="addFeed">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group add-feed-fields">
+                        <input class="form-control" type="text" name="add-source-name" id="add-source-name" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group add-feed-fields">
+                        <input class="form-control" type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
+                      </div>
+                    </div>
+                  </div>
+                  <select class="form-control" id='chooseCategory'>
+                    <option selected disabled>Choose a category</option>
+
+                  </select>
+                    <div class="form-group">
+                      <input class="form-control" type="text" name="newCategory" id='catName' placeholder="Category Name">
+                      <button type="button" id='catNameButton' class='btn btn-primary'>Add Category</button>
+                    </div>
+                  <div class="form-group">
+                    <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </form>
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <!-- content goes here -->
@@ -77,10 +95,8 @@
   <footer class="footer">
 
   </footer>
-  <!-- javascript for speedier loading -->
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="js/jquery-1.12.4.js" type='text/javascript'></script>
+  <script src="js/bootstrap.min.js" type='text/javascript'></script>
   <script type="text/javascript" src="js/md5.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
   <script type="text/javascript" src="js/models.js"></script>

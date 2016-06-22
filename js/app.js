@@ -4,6 +4,7 @@ function App(name) {
   this.sources = [];
   this.models = {};
   this.watchers = [];
+  this.categories = [];
 
 }
 
@@ -23,3 +24,14 @@ App.prototype.addSources = function(){
     }
   }
 };
+
+App.prototype.addCat = function(category){
+  this.categories.push(category);
+  this.models[this.id].save("categories", this.categories);
+}
+
+function Categories(name, sources) {
+  this.name = name;
+  this.id = md5(name);
+  this.sources = [];
+}
