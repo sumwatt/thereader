@@ -24,10 +24,19 @@ Reader.sources.forEach(function(source){
 
 var newSource = Object;
 
-function renderAudioPlayer(link){
-  $('#player').text("");
-  $('#player').append('<source src="' + link + '" type="audio/mpeg">')
+var renderArticle = function(id, article){
+  $('.article-content').text("");
+  var content = '<div class="article-title-inline"><span class="glyphicon glyphicon-trash" aria-hidden="true" id="' +
+                id + "-" + article.id  + '"></span><a href="' + article.link + '">'+  article.title + '</a></div>';
+  //content += '<div class="article-link"><p><a href="' + article.link + '">original source</a></p></div>';
+  content += '<div class="article-content-body">' + article.content + '</div>';
+  if(article.podcast){
+    content += '<div class="podcast-link">'+
+              '<a href="' + article.audioUrl  + '"<span class="glyphicon glyphicon-play-circle">' + '</span></a></div>';
+  }
+  $('.article-content').append(content);
 }
+
 
 
 $(function(){
@@ -59,7 +68,7 @@ $(function(){
       $('.rssfeed').append(content);
     });
 
-    $('.article').on('click', '.article-title', function(){
+    $('body').on('click', '.article-title', function(){
       var articleId = this.id.split("-");
       console.log("click found");
       console.log(articleId);
@@ -69,7 +78,8 @@ $(function(){
         if(article.id === articleId[1]){
           // remove all html formatting
           // article.content.replace(/(<([^>]+)>)/ig, "")
-          var content = '<div class="article-title-inline"><a href="' + article.link + '">'+  article.title + '</a></div>';
+          var content = '<div class="article-title-inline"><span class="glyphicon glyphicon-trash" aria-hidden="true" id="' +
+                        item[1] + "-" + article.id  + '"></span> <a href="' + article.link + '">'+  article.title + '</a></div>';
           //content += '<div class="article-link"><p><a href="' + article.link + '">original source</a></p></div>';
           content += '<div class="article-content-body">' + article.content + '</div>';
           if(article.podcast){
@@ -81,6 +91,35 @@ $(function(){
       });
     });
 
+    $('.article-content').on("click", '.glyphicon-trash', function(event){
+      var id = this.id.split("-");
+      var articles = Reader.models[id[0]].fetch("articles");
+      console.log(id[0]);
+      var artLen = articles.length;
+      for(var i = 0; i < artLen; i++){
+        if(articles[i].id === id[1]){
+          console.log(articles[i])
+          var result = articles.splice(i, 1);
+          i = artLen;
+        }
+      }
+      Reader.models[id[0]].save("articles", articles);
+      console.log(articles);
+
+      $('.rssfeed').text("");
+      $('.article-content').text("");
+      articles.forEach(function(article){
+        var content = '<div class="article" id="article-' + article.id + '">';
+        content += '<div class="article-title" id="title-' + article.id + '">' + article.title + '</div>';
+        content += "</div><!-- closes article -->";
+        $('.rssfeed').append(content);
+      });
+      renderArticle(id[0], articles[0]);
+
+
+    })
   });
+
+
 
 });
