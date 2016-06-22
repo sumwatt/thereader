@@ -33,3 +33,9 @@ img {
 .article {
   border-bottom: 1px dotted;
 }
+.glyphicon-remove{
+  display: none;
+}
+#feed-list{
+  cursor: pointer;
+}

@@ -14,10 +14,8 @@ if(storedSources){
 // Pre-render the feed lists if they exist
 // Thank you localStorage for persistence :D
 //Reader.models.push(Reader.id);
-$('#feed-list').empty();
-Reader.sources.forEach(function(source){
-  $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
-});
+
+
 /**
  *   @newSource  - Source object
  */
@@ -36,8 +34,19 @@ var renderArticle = function(id, article){
   }
   $('.article-content').append(content);
 }
+var renderFeedList = function(source){
+  $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name +'<span class="glyphicon glyphicon-remove" aria-hidden="true" id="delFeed' +  "-" + source.id  + '"></span></li>');
+  $("#li-" + source.id).hover(function(){
+    $("#delFeed-"+ source.id).show();
+  },function(){
+    $("#delFeed-"+ source.id).hide();
+  });
+}
 
-
+$('#feed-list').empty();
+Reader.sources.forEach(function(source){
+  renderFeedList(source);
+});
 
 $(function(){
   $("#addFeed").submit(function(event){
@@ -48,18 +57,39 @@ $(function(){
     newSource = new Source(name, link);
     // newSource.fetch();
     Reader.addSources(newSource);
-      console.log(Reader);
+      // console.log(Reader);
     $('#msg-box').html("<p>Item added!</p>");
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
-      $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
+    renderFeedList(source);
     });
+  });
+
+  $("#feed-list").on("click", ".glyphicon-remove", function(){
+    var feedList = this.id.split("-");
+    Reader.models[feedList[1]].deleteSource();
+    var storedSources = Reader.models[Reader.id].fetch("sources");
+    var i = 0;
+     storedSources.forEach(function(source){
+       if(feedList[1] === source.id){
+         var newList = storedSources.splice(i, 1);
+         console.log(storedSources);
+       }
+       i++;
+     });
+     Reader.sources = storedSources;
+    //  console.log(storedSources);
+     Reader.models[Reader.id].save("sources", Reader.sources);
+     $("#feed-list").text("");
+     Reader.sources.forEach(function(source){
+       renderFeedList(source);
+     });
   });
 
   $('#feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
     var sources = Reader.models[item[1]].findAll("articles");
-    console.log(sources);
+    // console.log(sources);
     $('.rssfeed').text("");
     sources.forEach(function(article){
       var content = '<div class="article" id="article-' + article.id + '">';
@@ -70,10 +100,10 @@ $(function(){
 
     $('body').on('click', '.article-title', function(){
       var articleId = this.id.split("-");
-      console.log("click found");
-      console.log(articleId);
+      // console.log("click found");
+      // console.log(articleId);
       $('.article-content').text("");
-      console.log(sources);
+      // console.log(sources);
       sources.forEach(function(article){
         if(article.id === articleId[1]){
           // remove all html formatting
@@ -94,17 +124,17 @@ $(function(){
     $('.article-content').on("click", '.glyphicon-trash', function(event){
       var id = this.id.split("-");
       var articles = Reader.models[id[0]].fetch("articles");
-      console.log(id[0]);
+      // console.log(id[0]);
       var artLen = articles.length;
       for(var i = 0; i < artLen; i++){
         if(articles[i].id === id[1]){
-          console.log(articles[i])
+          // console.log(articles[i])
           var result = articles.splice(i, 1);
           i = artLen;
         }
       }
       Reader.models[id[0]].save("articles", articles);
-      console.log(articles);
+      // console.log(articles);
 
       $('.rssfeed').text("");
       $('.article-content').text("");
@@ -117,7 +147,7 @@ $(function(){
       renderArticle(id[0], articles[0]);
 
 
-    })
+    });
   });
 
 

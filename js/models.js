@@ -97,7 +97,7 @@ function FeedWatcher(source){
 
           content.push(article);
         }
-        console.log(JSON.stringify(article));
+        // console.log(JSON.stringify(article));
         // if we have valid results - store them in the database
         if(storage && content){
           localStorage.setObject(source.id + "-articles", storage.concat(content));
@@ -154,4 +154,8 @@ Model.prototype.findBy = function(table, query){
   var storage = this.fetch(table);
   return storage.filter(query);
 
+}
+Model.prototype.deleteSource = function(){
+  console.log(this.id);
+  return localStorage.removeItem(this.id + "-articles");
 }
