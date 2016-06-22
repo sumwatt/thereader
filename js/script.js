@@ -58,6 +58,7 @@ $(function(){
     });
   });
 
+
   $('#feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
     var sources = Reader.models[item[1]].findAll("articles");
@@ -76,6 +77,7 @@ $(function(){
         if(article.id === articleId[1]){
           renderArticle(item[1], article);
         }
+
       });
     });
 
@@ -90,7 +92,6 @@ $(function(){
         }
       }
       Reader.models[id[0]].save("articles", articles);
-
       $('.rssfeed').text("");
       $('.article-content').text("");
       articles.forEach(function(article){
