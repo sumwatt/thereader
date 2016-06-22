@@ -45,3 +45,19 @@ img {
 iframe {
   display: none;
 }
+
+#plusIcon {
+  color: rgb(172, 172, 172);
+  margin-left: 900px;
+  margin-top: 17px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+}
+
+#plusIcon:hover {
+  cursor: pointer;
+ /*height: 150px;
+ width: `150px;*/
+ /*margin-left: -50px;*/
+}
