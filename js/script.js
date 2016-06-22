@@ -70,6 +70,19 @@ $(function(){
       $('.rssfeed').append(content);
     });
 
+    var sourceName;
+    Reader.sources.forEach(function(source) {
+      if (source.id === item[1]) {
+        sourceName = source.name;
+      }
+    });
+    $('#source-name').text(sourceName + " Articles");
+
+    // var mySource;
+    // for (var i = 0; i < Reader.sources.length; i++) {
+    //
+    // }
+
     $('body').on('click', '.article-title', function(){
       var articleId = this.id.split("-");
       $('.article-content').text("");
@@ -80,6 +93,7 @@ $(function(){
 
       });
     });
+
 
     $('.article-content').on("click", '.glyphicon-trash', function(event){
       var id = this.id.split("-");
