@@ -69,6 +69,11 @@ $(function(){
     Reader.sources.forEach(function(source){
       $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
     });
+    for (var i=0; i<=Reader.categories.length; i++) {
+      if (Reader.categories[i].name === $('#chooseCategory').val() ) {
+        Reader.categories[i].sources.push(newSource);
+      }
+    }
   });
 
   $('#feed-list').on('click', 'li', function(){
@@ -85,65 +90,12 @@ $(function(){
     });
   });
 
-
-// //Create a new category name and store it in a new object. Push the object to reader.categories
-//   $('#new-category').submit(function (event) {
-//     event.preventDefault();
-//     var categoryName = $('#category-name').val();
-//     reader.categories.push(new Category(categoryName, []));
-//   });
-//
-//
-// //Create select box with category names
-//   reader.forEach(function(catName){
-//     var catSelectBox = '<option>' + reader.categories + '</option>';
-//     $('#chooseCategory').append(catSelectBox);
-//   });//NEED TO ADD NAME'S VALUE
-//
-// //populate checkbox source list
-//   reader.forEach(function(sourceList){
-//     var checkboxList = '<div class="checkbox">' + '<label>'+'<input type="checkbox" name="modal-source" value='+ source.id +'>' + source.name +'</label>'+'</div>'
-//   });
-//
-// //Choose category from select box, checkbox to select sources to assign to choosen category. Push to selected category's object.
-//   $('#add-to-category').submit(function (event) {
-//     event.preventDefault();
-//     var categorySources = [];
-//     $('#add-to-category input:checked').each(function() {
-//       categorySources.push($(this).val());
-//     });
-//     Categories.$('#chooseCategory').val().push(categorySources);//PUSHING TO WRONG PLACE
-//   });
-
-//Create a new category name and store it in a new object. Push the object to reader.categories
-  $('#new-category').submit(function (event) {
+  $('#catNameButton').click(function (event) {
     event.preventDefault();
-    var categoryName = $('#category-name').val();
-    var categoryObject = new Categories(categoryName, []);
-  });
-
-
-//Create select box with category names
-  categoryObject.forEach(function(catName){
-    var catSelectBox = '<option>' + categoryObject.name + '</option>';
-    console.log(catSelectBox);
-    $('#chooseCategory').append(catSelectBox);
-  });
-
-//populate checkbox source list
-  reader.forEach(function(sourceList){
-    var checkboxList = '<div class="checkbox">' + '<label>'+'<input type="checkbox" name="modal-source" value='+ source.id +'>' + source.name +'</label>'+'</div>'
-  });
-
-//Choose category from select box, checkbox to select sources to assign to choosen category. Push to selected category's object.
-  $('#add-to-category').submit(function (event) {
-    event.preventDefault();
-    var categorySources = [];
-    $('#add-to-category input:checked').each(function() {
-      categoryObject.sources.push(categorySources)
+    Reader.categories.push(new Categories($('#catName').val(),[]));
+    $('#chooseCategory').text("");
+    Reader.categories.forEach(function(category){
+      $('#chooseCategory').append('<option id="catopt-' + md5(category.name) + '">' + category.name + '</option>');
     });
   });
-
-  reader.categories.push(categoryObject);
-
 });

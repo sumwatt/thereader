@@ -35,80 +35,43 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <form id="addFeed">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group add-feed-fields">
-                  <input type="text" name="add-source-name" id="add-source-name" placeholder="Name">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group add-feed-fields">
-                  <input type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
-                </div>
-              </div>
-            </div>
-          </form>
+        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#modal">Add</button>
         </div>
       </div>
-      <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#categoryModal">Add a Category</button>
-      <!--Add new category modal-->
-      <div id="categoryModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-sm">
+
+      <div id="modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-md">
           <div class="modal-content">
             <div class="modal-body">
-              <form id='new-category'>
-                <div class="form-group">
-                  <input type="text" name="newCategory" id='category-name' placeholder="Category Name">
-                  <button type="submit" class='btn btn-primary'>Add Category</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#sourceModal">Add Source to a Category</button>
-      <!--Add Source to Category Modal-->
-      <div id="sourceModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-body">
-              <!--Form that allows selectio of a defined category to add sources-->
-              <form>
-                <select class="form-control" id='chooseCategory'>
-                  <option>News</option>
-                  <option>Tech</option>
-                  <option>Health</option>
-                  <option>Auto</option>
-                  <option>Aviation</option>
-                </select>
-              </form>
-              <!--List of feeds to be added to category-->
-              <form id='add-to-category'>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="modal-source" value="BBC">BBC</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="modal-source" value="Reuters">Reuters</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="modal-source" value="CBC">CBC</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="modal-source" value="Independant">Independant</label>
-                </div>
-                <div class="checkbox">
-                  <label><input type="checkbox" name="modal-source" value="New York Times">New York Times</label>
-                </div>
-                  <div class="modal-footer">
-                    <button type="submit" class="btn btn-default">Add Feeds</button>
+
+                  <!--Form that allows selectio of a defined category to add sources-->
+                <form id="addFeed">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group add-feed-fields">
+                        <input type="text" name="add-source-name" id="add-source-name" placeholder="Name">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group add-feed-fields">
+                        <input type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
+                      </div>
+                    </div>
                   </div>
-              </form>
+                  <select class="form-control" id='chooseCategory'>
+                    <option>Choose a category</option>
+                    <option>Tech</option>
+                    <option>Health</option>
+                    <option>Auto</option>
+                  </select>
+                    <div class="form-group">
+                      <input type="text" name="newCategory" id='catName' placeholder="Category Name">
+                      <button type="button" id='catNameButton' class='btn btn-primary'>Add Category</button>
+                    </div>
+                  <div class="form-group">
+                    <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
+                  </div>
+                </form>
             </div>
           </div>
         </div>
