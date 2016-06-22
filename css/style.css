@@ -2,6 +2,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.navbar-inverse .navbar-brand {
+  font-size: 30px;
+  font-weight: light;
+  margin-left: none;
+}
+
 .content {
   margin-top: 75px;
 }
@@ -12,6 +18,7 @@ body {
 
 .article {
   margin: 5px;
+  border-bottom: 1px dotted;
 }
 
 .article-title {
@@ -21,13 +28,12 @@ body {
 }
 
 .article-title-inline {
-  font-weight: bold;
-  font-size: 18px;
+  font-size: 30px;
   margin-bottom: 5px;
 }
 
 audio {
-  margin-top: 10px;
+  margin: 10px;
   }
 
 img {
@@ -38,10 +44,25 @@ img {
   display: none;
 }
 
-.article {
-  border-bottom: 1px dotted;
-}
-
 iframe {
   display: none;
+}
+
+#sources {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+#titles {
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+#articles {
+  margin-top: 15px;
+}
+
+a {
+  color: black;
 }
