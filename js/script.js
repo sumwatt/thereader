@@ -44,8 +44,23 @@ var renderArticle = function(id, article){
 
   $('.article-content').append(content);
 }
+var renderFeedList = function(source){
+  $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name +'<span class="glyphicon glyphicon-remove" aria-hidden="true" id="delFeed' +  "-" + source.id  + '"></span></li>');
+  $("#li-" + source.id).hover(function(){
+    $("#delFeed-"+ source.id).show();
+  },function(){
+    $("#delFeed-"+ source.id).hide();
+  });
+}
 
-
+$('#feed-list').empty();
+Reader.sources.forEach(function(source){
+  renderFeedList(source);
+});
+function resetFields(){
+  $('#add-source-name').val("");
+  $('#add-feed-link').val("");
+}
 
 $(function(){
   $("#addFeed").submit(function(event){
@@ -58,7 +73,8 @@ $(function(){
     $('#msg-box').html("<p>Item added!</p>");
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
-      $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
+    renderFeedList(source);
+    resetFields();
     });
     for (var i=0; i<=Reader.categories.length; i++) {
       if (Reader.categories[i].name === $('#chooseCategory').val() ) {
@@ -68,6 +84,26 @@ $(function(){
 
   });
 
+  $("#feed-list").on("click", ".glyphicon-remove", function(){
+    var feedList = this.id.split("-");
+    Reader.models[feedList[1]].deleteSource();
+    var storedSources = Reader.models[Reader.id].fetch("sources");
+    var i = 0;
+     storedSources.forEach(function(source){
+       if(feedList[1] === source.id){
+         var newList = storedSources.splice(i, 1);
+         console.log(storedSources);
+       }
+       i++;
+     });
+     Reader.sources = storedSources;
+    //  console.log(storedSources);
+     Reader.models[Reader.id].save("sources", Reader.sources);
+     $("#feed-list").text("");
+     Reader.sources.forEach(function(source){
+       renderFeedList(source);
+     });
+  });
 
   $('#feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
@@ -111,6 +147,7 @@ $(function(){
       var artLen = articles.length;
       for(var i = 0; i < artLen; i++){
         if(articles[i].id === id[1]){
+
           var result = articles.splice(i, 1);
           i = artLen;
         }

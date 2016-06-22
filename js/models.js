@@ -157,3 +157,7 @@ Model.prototype.findBy = function(table, query){
   return storage.filter(query);
 
 }
+Model.prototype.deleteSource = function(){
+  console.log(this.id);
+  return localStorage.removeItem(this.id + "-articles");
+}

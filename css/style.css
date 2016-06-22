@@ -66,3 +66,9 @@ iframe {
 a {
   color: black;
 }
+.glyphicon-remove{
+  display: none;
+}
+#feed-list{
+  cursor: pointer;
+}
