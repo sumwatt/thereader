@@ -47,6 +47,10 @@ $('#feed-list').empty();
 Reader.sources.forEach(function(source){
   renderFeedList(source);
 });
+function resetFields(){
+  $('#add-source-name').val("");
+  $('#add-feed-link').val("");
+}
 
 $(function(){
   $("#addFeed").submit(function(event){
@@ -62,6 +66,7 @@ $(function(){
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
     renderFeedList(source);
+    resetFields();
     });
   });
 
