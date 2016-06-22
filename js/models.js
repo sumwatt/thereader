@@ -67,7 +67,7 @@ function FeedWatcher(source){
           article.id = id
           article.read = false;
           article.title = item.title;
-
+          console.log(item);
           // detect an array and change it to the string of the first item
           if(typeof description === "object" ){
             article.description = item.description[0];
@@ -87,7 +87,7 @@ function FeedWatcher(source){
           } else if(item.encoded){
             article.content = item.encoded;
           } else {
-            article.content = article.description[1];
+            article.content = (typeof article.description === "object") ? article.description[1] : article.description;
           }
 
           if(item.guid.content){

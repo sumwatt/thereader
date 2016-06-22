@@ -41,3 +41,7 @@ img {
 .article {
   border-bottom: 1px dotted;
 }
+
+iframe {
+  display: none;
+}
