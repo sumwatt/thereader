@@ -21,7 +21,6 @@ Reader.sources.forEach(function(source){
   $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
   $('.navbar-nav').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
 });
-
 if(Reader.categories){
   Reader.categories.forEach(function(category){
     $('#chooseCategory').append('<option id="catopt-' + category.id + '">' + category.name + '</option>');
@@ -35,8 +34,6 @@ var renderArticle = function(id, article){
   var content = '<div class="article-title-inline"><a href="' + article.link + '">'+  article.title + '</a>'
   content += '<span class="glyphicon glyphicon-trash" aria-hidden="true" id="' + id + "-" + article.id  + '"></span>';
   + '</div>';
-
-  // content += '<div class="row">' + '<div class="col-sm-6">';
   if(article.podcast){
   content += '<div class="podcast-link"><audio controls>'+
   '<source src="' + article.audioUrl  + '"></audio></div>';
@@ -47,7 +44,6 @@ var renderArticle = function(id, article){
   //content += '"<span class="glyphicon glyphicon-play-circle">' + '</span>';
   content += '</div></div></div>';
   content += '<div class="article-content-body">' + article.content + '</div>';
-
   $('.article-content').append(content);
   $('audio[controls]').before(function () {
 
@@ -458,6 +454,7 @@ Reader.sources.forEach(function(source){
 function resetFields(){
   $('#add-source-name').val("");
   $('#add-feed-link').val("");
+  $("#catName").val("");
 }
 
 $(function(){
@@ -468,7 +465,7 @@ $(function(){
     var link = $('#add-feed-link').val();
     var newSource = new Source(name, link);
     Reader.addSources(newSource);
-    $('#msg-box').html("<p>Item added!</p>");
+    $('#msg-box').html("Item added!");
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
     renderFeedList(source);
@@ -490,12 +487,10 @@ $(function(){
      storedSources.forEach(function(source){
        if(feedList[1] === source.id){
          var newList = storedSources.splice(i, 1);
-         console.log(storedSources);
        }
        i++;
      });
      Reader.sources = storedSources;
-    //  console.log(storedSources);
      Reader.models[Reader.id].save("sources", Reader.sources);
      $("#feed-list").text("");
      Reader.sources.forEach(function(source){
@@ -521,11 +516,9 @@ $(function(){
       }
     });
     $('#source-name').text(sourceName + " Articles");
-
-    // var mySource;
-    // for (var i = 0; i < Reader.sources.length; i++) {
-    //
-    // }
+    $('#source-name').unbind().click(function(){
+      $('.rssfeed').toggle("Articles");
+    });
 
     $('body').on('click', '.article-title', function(){
       var articleId = this.id.split("-");
@@ -534,6 +527,7 @@ $(function(){
         if(article.id === articleId[1]){
           renderArticle(item[1], article);
         }
+
 
       });
     });
@@ -563,6 +557,8 @@ $(function(){
     });
   });
 
+
+
   $('#catNameButton').click(function (event) {
     event.preventDefault();
     Reader.addCat(new Categories($('#catName').val(),[]));
@@ -570,5 +566,6 @@ $(function(){
     Reader.categories.forEach(function(category){
       $('#chooseCategory').append('<option id="catopt-' + category.id + '">' + category.name + '</option>');
     });
+    //resetFields();
   });
 });
