@@ -33,15 +33,14 @@ var renderArticle = function(id, article){
   var content = '<div class="article-title-inline"></span> <a href="' + article.link + '">'+  article.title + '</a></div>';
   content += '<div class="article-link-bar">';
   content += '<span class="glyphicon glyphicon-trash" aria-hidden="true" id="' + id + "-" + article.id  + '">';
-  //content += '"<span class="glyphicon glyphicon-play-circle">' + '</span>';
   content += '</div><!-- end linkbar -->';
   if(article.podcast){
     content += '<div class="podcast-link"><audio controls>'+
               '<source src="' + article.audioUrl  + '"></audio></div>';
   }
   content += '<div class="article-content-body">' + article.content + '</div>';
-
   $('.article-content').append(content);
+
 
 }
 var renderFeedList = function(source){
@@ -124,7 +123,6 @@ $(function(){
     $('#source-name').unbind().click(function(){
       $('.rssfeed').toggle("Articles");
     });
-  console.log(sourceName);
 
     $('body').on('click', '.article-title', function(){
       var articleId = this.id.split("-");
@@ -133,6 +131,7 @@ $(function(){
         if(article.id === articleId[1]){
           renderArticle(item[1], article);
         }
+
 
       });
     });
@@ -161,6 +160,8 @@ $(function(){
       renderArticle(id[0], articles[0]);
     });
   });
+
+
 
   $('#catNameButton').click(function (event) {
     event.preventDefault();
