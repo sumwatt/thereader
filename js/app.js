@@ -57,7 +57,7 @@ App.prototype.renderCats = function(){
     category.sources.forEach(function(source){
       for(var i = 0; i < appSources.length; i++){
         if(source === appSources[i].id){
-          html += '<li class="feed-list-item" id="li-' + appSources[i].id + '">' + appSources[i].name +'<span class="glyphicon glyphicon-remove" aria-hidden="true" id="delFeed' +  "-" + appSources[i].id  + '"></span></li>';
+          html += '<li class="feed-list-item" id="li-' + appSources[i].id + '"><span class="glyphicon glyphicon-remove" id="delFeed-' + appSources[i].id  + '"></span> ' + appSources[i].name + '</li>';
         }
       };
     });

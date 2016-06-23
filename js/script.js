@@ -16,10 +16,6 @@ if(Reader.categories){
   Reader.renderCats();
 }
 
-/**
- *  Component rendering
- */
-
 
 function resetFields(){
   $('#add-source-name').val("");
