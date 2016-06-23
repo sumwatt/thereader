@@ -104,7 +104,6 @@ a {
 #feed-list, .navbar-nav {
   cursor: pointer;
 }
-<<<<<<< HEAD
 
 /*----Add Feed----*/
 .add-feed-fields {
@@ -119,9 +118,3 @@ audio {
 
 #primaryaudio, .share-tools--primary, .audio-module, #story-meta{
   display: none;
-=======
-#hideArticle{
-  cursor: pointer;
-  text-decoration: underline;
->>>>>>> eea35cc2b4a0d93a6e7d72ad407e5088dbbdd24c
-}
