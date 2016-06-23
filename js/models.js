@@ -67,7 +67,6 @@ function FeedWatcher(source){
           article.id = id
           article.read = false;
           article.title = item.title;
-          console.log(item);
           // detect an array and change it to the string of the first item
           if(typeof description === "object" ){
             article.description = item.description[0];
