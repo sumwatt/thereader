@@ -70,7 +70,7 @@ $(function(){
     var link = $('#add-feed-link').val();
     var newSource = new Source(name, link);
     Reader.addSources(newSource);
-    $('#msg-box').html("<p>Item added!</p>");
+    $('#msg-box').text("Item added!").fadeToggle();
     $('#feed-list').empty();
     Reader.sources.forEach(function(source){
     renderFeedList(source);
