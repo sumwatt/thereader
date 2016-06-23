@@ -32,17 +32,18 @@ if(Reader.categories){
 
 
 var renderArticle = function(id, article){
-  var content = '<div class="article-title-inline"></span> <a href="' + article.link + '">'+  article.title + '</a></div>';
+  var content = '<div class="article-title-inline"><a href="' + article.link + '">'+  article.title + '</a>'
+  content += '<span class="glyphicon glyphicon-trash" aria-hidden="true" id="' + id + "-" + article.id  + '"></span>';
+  + '</div>';
 
-  content += '<div class="row">' + '<div class="col-sm-6">';
+  // content += '<div class="row">' + '<div class="col-sm-6">';
   if(article.podcast){
   content += '<div class="podcast-link"><audio controls>'+
   '<source src="' + article.audioUrl  + '"></audio></div>';
   }
-  content += '</div><div class="col-sm-6">';
+  // content += '</div><div class="col-sm-6">';
   content += '<div class="article-link-bar">';
 
-  content += '<span class="glyphicon glyphicon-trash" aria-hidden="true" id="' + id + "-" + article.id  + '">';
   //content += '"<span class="glyphicon glyphicon-play-circle">' + '</span>';
   content += '</div></div></div>';
   content += '<div class="article-content-body">' + article.content + '</div>';
@@ -205,7 +206,7 @@ var renderArticle = function(id, article){
           };
 
           var seek_wrapper = document.createElement('div');
-          $(seek_wrapper).addClass('btn btn-default col-sm-4 hidden-sm');
+          $(seek_wrapper).addClass('btn btn-default col-sm-4 hidden-xs');
           $(seek_wrapper).append(seek);
 
           // bind seek / position slider events
