@@ -439,7 +439,7 @@ var renderArticle = function(id, article){
   });
 }
 var renderFeedList = function(source){
-  $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name +'<span class="glyphicon glyphicon-remove removeFeed" aria-hidden="true" id="delFeed' +  "-" + source.id  + '"></span></li>');
+  $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + '<span class="glyphicon glyphicon-remove removeFeed" aria-hidden="true" id="delFeed' +  "-" + source.id  + '"></span>' + source.name + '</li>');
   $("#li-" + source.id).hover(function(){
     $("#delFeed-"+ source.id).show();
   },function(){

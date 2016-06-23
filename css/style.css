@@ -1,3 +1,4 @@
+/*----*Body*----*/
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -8,7 +9,8 @@ body {
 }
 
 #sources ul {
-  list-style-type: none;
+list-style-type: none;
+list-style-position: outside;
 }
 
 #sources {
@@ -30,6 +32,7 @@ body {
 
 #articles {
   margin-top: 15px;
+  padding-left: 30px;
 }
 
 .article-title {
@@ -40,7 +43,7 @@ body {
 
 .article-title-inline {
   font-size: 30px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 img {
@@ -60,18 +63,22 @@ a {
 }
 
 .removeFeed {
-  margin-left: 10px;
-  font-size: .8em;
+margin-right: 10px;
+font-size: .8em;
+
 }
 
 .glyphicon-trash {
-  font-size: 1em;
-  margin-left: 1em;
+  font-size: .8em;
+  padding-left: 10px;
 }
 
-/*.article-link-bar {
-  float: right;
-}*/
+
+.btn-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 1em;
+}
 
 /*----*Navbar*----*/
 .navbar-inverse .navbar-brand {
@@ -89,11 +96,16 @@ a {
   cursor: pointer;
 }
 
-/*----Add Feed----*/
+#tr {
+  font-family: 'Special Elite', cursive;
+  color: #bfbfbf;
+  margin-top: 5px;
+ }
+
+ /*----Add Feed----*/
 .add-feed-fields {
   margin-top: 5px;
 }
-
 
 
 /*----Audio Player----*/
@@ -105,9 +117,10 @@ audio {
   display: none;
 }
 
+/*Modal*/
+
 #plusIcon {
   color: rgb(172, 172, 172);
-  margin-left: 900px;
   margin-top: 17px;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
