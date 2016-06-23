@@ -59,6 +59,7 @@ Reader.sources.forEach(function(source){
 function resetFields(){
   $('#add-source-name').val("");
   $('#add-feed-link').val("");
+  $("#catName").val("");
 }
 
 $(function(){
@@ -170,5 +171,6 @@ $(function(){
     Reader.categories.forEach(function(category){
       $('#chooseCategory').append('<option id="catopt-' + category.id + '">' + category.name + '</option>');
     });
+    resetFields();
   });
 });
