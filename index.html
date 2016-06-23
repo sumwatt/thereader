@@ -38,28 +38,26 @@
       <div class="modal-content">
         <div class="modal-body">
           <form id="addFeed">
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group add-feed-fields">
-                  <input class="form-control" type="text" name="add-source-name" id="add-source-name" placeholder="Name">
+            <div class="form-inline">
+              <div class="from-group">
+                <div class="input-group">
+                  <input class="form-control" type="text" name="newCategory" id='catName' placeholder="Add a Category">
+                  <span class="input-group-btn">
+                    <button type="button" id='catNameButton' class='btn btn-default'><span class="glyphicon glyphicon-plus"></span></button>
+                  </span>
                 </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group add-feed-fields">
-                  <input class="form-control" type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
-                </div>
+                <select class="form-control" id='chooseCategory'>
+                  <option selected disabled>Choose a Category</option>
+                </select>
               </div>
             </div>
-            <select class="form-control" id='chooseCategory'>
-              <option selected disabled>Choose a category</option>
-            </select>
+            <div class="form-inline">
               <div class="form-group">
-                <input class="form-control" type="text" name="newCategory" id='catName' placeholder="Category Name">
-                <button type="button" id='catNameButton' class='btn btn-primary'>Add Category</button>
+                <input class="form-control add-feed-fields" type="text" name="add-source-name" id="add-source-name" placeholder="RSS Name">
+                <input class="form-control add-feed-fields" type="text" name="add-feed-link" id="add-feed-link" placeholder="RSS URL">
+                <button type="submit" id="add-feed-submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class='glyphicon glyphicon-remove'></span></button>
               </div>
-            <div class="form-group">
-              <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </form>
         </div>

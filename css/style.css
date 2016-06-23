@@ -1,3 +1,11 @@
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -53,11 +61,36 @@ iframe {
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
+  font-size: 14px;
 }
 
 #plusIcon:hover {
   cursor: pointer;
- /*height: 150px;
- width: `150px;*/
- /*margin-left: -50px;*/
+  font-size: 25px;
+  margin-top: 10px;
+ }
+
+#modal {
+  opacity: 0.9;
+ }
+
+.modal-body {
+  background-color: rgb(36, 31, 62);
+  padding-left: 30px;
+}
+
+#catName {
+  width:186px;
+}
+
+#chooseCategory {
+  width: 225px;
+}
+
+#add-source-name {
+  width: 225px;
+}
+
+#add-feed-link {
+  width: 225px;
 }
