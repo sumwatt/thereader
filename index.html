@@ -24,9 +24,10 @@
         <a class="navbar-brand" href="index.html">The Reader</a>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
         </ul>
-      </div><!--/.nav-collapse -->
+      </div>
+  <!--/.nav-collapse -->
     </div>
   </nav>
   <div class="content">
@@ -82,16 +83,16 @@
       </div>
       <!-- content goes here -->
       <div class="row">
-        <div class="col-md-2" id="sources">
+        <div class="col-sm-2 hidden-xs" id="sources">
           <ul id="feed-list"></ul>
         </div>
-        <div class="col-md-4" id="titles">
+        <div class="col-sm-6 col-sm-push-4" id="articles">
+          <div class="article-content"></div>
+        </div>
+        <div class="col-sm-4 col-sm-pull-6" id="titles">
           <h2 id="source-name">
           </h2>
           <div class="rssfeed"></div>
-        </div>
-        <div class="col-md-6" id="articles">
-          <div class="article-content"></div>
         </div>
       </div>
 

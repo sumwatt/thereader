@@ -19,6 +19,7 @@ Reader.categories = Reader.models[Reader.id].fetch("categories") || [];
 $('#feed-list').empty();
 Reader.sources.forEach(function(source){
   $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
+  $('.navbar-nav').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
 });
 
 if(Reader.categories){
@@ -53,7 +54,7 @@ var renderArticle = function(id, article){
       song.controls = false;
 
       var player_box = document.createElement('div');
-      $(player_box).addClass($(song).attr('class') + ' well container-fluid playa');
+      $(player_box).addClass($(song).attr('class') + ' playa');
 
       var data_sec = document.createElement('section');
       $(data_sec).addClass('collapsing center-block row col-sm-12');
@@ -204,7 +205,7 @@ var renderArticle = function(id, article){
           };
 
           var seek_wrapper = document.createElement('div');
-          $(seek_wrapper).addClass('btn btn-default col-sm-4 hidden-xs');
+          $(seek_wrapper).addClass('btn btn-default col-sm-4 hidden-sm');
           $(seek_wrapper).append(seek);
 
           // bind seek / position slider events
@@ -286,7 +287,7 @@ var renderArticle = function(id, article){
 
       var addMute = function () {
           var mute = document.createElement('button');
-          $(mute).addClass('btn btn-default  col-sm-1');
+          $(mute).addClass('btn btn-default  col-sm-1 hidden-xs');
 
           mute.checkVolume = function () {
               if (song.volume > 0.5 && !song.muted) {
@@ -334,12 +335,12 @@ var renderArticle = function(id, article){
               $(volume).val(song.volume);
           };
 
-          var vol_wrapper = document.createElement('div');
-          $(vol_wrapper).addClass('btn  btn-default  row col-sm-3  hidden-xs');
-          $(vol_wrapper).append(volume);
-          $(volume).on('change', volume.slide);
-          $(song).on('volumechange', volume.set);
-          $(player).append(vol_wrapper);
+          // var vol_wrapper = document.createElement('div');
+          // $(vol_wrapper).addClass('btn  btn-default  row col-sm-3  hidden-xs');
+          // $(vol_wrapper).append(volume);
+          // $(volume).on('change', volume.slide);
+          // $(song).on('volumechange', volume.set);
+          // $(player).append(vol_wrapper);
 
       }; // addVolume
 
@@ -501,7 +502,7 @@ $(function(){
      });
   });
 
-  $('#feed-list').on('click', 'li', function(){
+  $('.navbar-nav, #feed-list').on('click', 'li', function(){
     var item = this.id.split("-");
     var sources = Reader.models[item[1]].findAll("articles");
     $('.rssfeed').text("");
