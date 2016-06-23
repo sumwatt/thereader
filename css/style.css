@@ -1,4 +1,3 @@
-/*----*Body*----*/
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -60,8 +59,7 @@ a {
   color: black;
 }
 
-.glyphicon-remove {
-  display: none;
+.removeFeed {
   margin-left: 10px;
   font-size: .8em;
 }
@@ -74,20 +72,6 @@ a {
 /*.article-link-bar {
   float: right;
 }*/
-
-.btn {
-  back
-}
-
-.btn-group {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 1em;
-}
-
-.btn-default {
-  padding-right: 22px;
-}
 
 /*----*Navbar*----*/
 .navbar-inverse .navbar-brand {
@@ -111,6 +95,7 @@ a {
 }
 
 
+
 /*----Audio Player----*/
 audio {
   margin: 10px;
@@ -118,3 +103,51 @@ audio {
 
 #primaryaudio, .share-tools--primary, .audio-module, #story-meta{
   display: none;
+}
+
+#plusIcon {
+  color: rgb(172, 172, 172);
+  margin-left: 900px;
+  margin-top: 17px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  font-size: 14px;
+}
+
+#plusIcon:hover {
+  cursor: pointer;
+  font-size: 25px;
+  margin-top: 10px;
+  color: green;
+ }
+
+#modal {
+  opacity: 0.9;
+  padding-top: 100px;
+ }
+
+.modal-body {
+  background-color: rgb(42, 42, 43);
+  padding-left: 30px;
+}
+
+#catName {
+  width:186px;
+}
+
+#chooseCategory {
+  width: 225px;
+}
+
+#add-source-name {
+  width: 225px;
+}
+
+#add-feed-link {
+  width: 225px;
+}
+
+#feed-list {
+  cursor: pointer;
+}

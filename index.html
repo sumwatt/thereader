@@ -22,6 +22,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">The Reader</a>
+        <span class="glyphicon glyphicon-plus" id='plusIcon' data-toggle="modal" data-target="#modal"></span>
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
@@ -33,55 +34,37 @@
   <div class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-6">
-          <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#modal">Add</button>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div id="msg-box"></div>
-        </div>
-      </div>
-
-      <div id="modal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-            <div class="modal-body">
-
-                  <!--Form that allows selectio of a defined category to add sources-->
+        <div id="modal" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-md">
+            <div class="modal-content">
+              <div class="modal-body">
                 <form id="addFeed">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group add-feed-fields">
-                        <input class="form-control" type="text" name="add-source-name" id="add-source-name" placeholder="Name">
+                  <!-- <div class="form-inline">
+                    <div class="from-group">
+                      <div class="input-group">
+                        <input class="form-control" type="text" name="newCategory" id='catName' placeholder="Add a Category">
+                        <span class="input-group-btn">
+                          <button type="button" id='catNameButton' class='btn btn-default'><span class="glyphicon glyphicon-plus"></span></button>
+                        </span>
                       </div>
+                      <select class="form-control" id='chooseCategory'>
+                        <option selected disabled>Choose a Category</option>
+                      </select>
                     </div>
-                    <div class="col-md-4">
-                      <div class="form-group add-feed-fields">
-                        <input class="form-control" type="text" name="add-feed-link" id="add-feed-link" placeholder="Link">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <select class="form-control" id='chooseCategory'>
-                      <option selected disabled>Choose a category</option>
-
-                    </select>
-                  </div>
+                  </div> -->
+                  <div class="form-inline">
                     <div class="form-group">
-                      <input class="form-control" type="text" name="newCategory" id='catName' placeholder="Category Name">
-                      <button type="button" id='catNameButton' class='btn btn-primary'>Add Category</button>
+                      <input class="form-control add-feed-fields" type="text" name="add-source-name" id="add-source-name" placeholder="RSS Name">
+                      <input class="form-control add-feed-fields" type="text" name="add-feed-link" id="add-feed-link" placeholder="RSS URL">
+                      <button type="submit" id="add-feed-submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"><span class='glyphicon glyphicon-remove'></span></button>
                     </div>
-                  <div class="form-group">
-                    <button type="submit" id="add-feed-submit" class="btn btn-primary">Add it!</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       <!-- content goes here -->
       <div class="row">
         <div class="col-sm-2 hidden-xs" id="sources">
