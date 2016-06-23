@@ -1,8 +1,8 @@
-# _Pizza Menu_
+# _thereader_
 
 #### _21 June 2016_
 
-#### By _**Kyle Helyar**_
+#### By _**Kyle Helyar, Cory Olson, Bhawani Parajuli, Georgina Van Dort**_ 
 
 ## Description
 A website that allows you to subscribe and interact with your favourite RSS sources and podcasts. Add sources by clicking on the plus icon on the upper right corner of the page.
@@ -41,7 +41,7 @@ Clone Repo and Enjoy :)
 
 MIT License
 
-Copyright (c) 2016 **_Kyle Helyar_**
+Copyright (c) 2016 **_Kyle Helyar, Cory Olson, Bhawani Parajuli, Georgina Van Dort_**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
