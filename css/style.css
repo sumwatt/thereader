@@ -68,10 +68,12 @@ iframe {
   cursor: pointer;
   font-size: 25px;
   margin-top: 10px;
+  color: green;
  }
 
 #modal {
   opacity: 0.9;
+  padding-top: 100px;
  }
 
 .modal-body {
@@ -93,4 +95,8 @@ iframe {
 
 #add-feed-link {
   width: 225px;
+}
+
+#feed-list {
+  cursor: pointer;
 }
