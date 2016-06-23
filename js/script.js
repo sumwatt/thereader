@@ -20,7 +20,6 @@ $('#feed-list').empty();
 Reader.sources.forEach(function(source){
   $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name + '</li>');
 });
-
 if(Reader.categories){
   Reader.categories.forEach(function(category){
     $('#chooseCategory').append('<option id="catopt-' + category.id + '">' + category.name + '</option>');
@@ -43,6 +42,7 @@ var renderArticle = function(id, article){
   content += '<div class="article-content-body">' + article.content + '</div>';
 
   $('.article-content').append(content);
+
 }
 var renderFeedList = function(source){
   $('#feed-list').append('<li class="feed-list-item" id="li-' + source.id + '">' + source.name +'<span class="glyphicon glyphicon-remove" aria-hidden="true" id="delFeed' +  "-" + source.id  + '"></span></li>');
@@ -92,12 +92,10 @@ $(function(){
      storedSources.forEach(function(source){
        if(feedList[1] === source.id){
          var newList = storedSources.splice(i, 1);
-         console.log(storedSources);
        }
        i++;
      });
      Reader.sources = storedSources;
-    //  console.log(storedSources);
      Reader.models[Reader.id].save("sources", Reader.sources);
      $("#feed-list").text("");
      Reader.sources.forEach(function(source){
@@ -123,11 +121,10 @@ $(function(){
       }
     });
     $('#source-name').text(sourceName + " Articles");
-
-    // var mySource;
-    // for (var i = 0; i < Reader.sources.length; i++) {
-    //
-    // }
+    $('#source-name').unbind().click(function(){
+      $('.rssfeed').toggle("Articles");
+    });
+  console.log(sourceName);
 
     $('body').on('click', '.article-title', function(){
       var articleId = this.id.split("-");
